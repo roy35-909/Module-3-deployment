@@ -25,23 +25,23 @@ jobs:
         run: npm run check
 
 
-  Deploy:
-    runs-on: self-hosted
-    needs: Testing
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+  # Deploy:
+  #   runs-on: self-hosted
+  #   needs: Testing
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v2
 
-      - name: Install Dependencies
-        run: npm install
+  #     - name: Install Dependencies
+  #       run: npm install
 
 
 
-      - name: Deploy to Server
-        run: |
-          pm2 delete "Server" || true
+  #     - name: Deploy to Server
+  #       run: |
+  #         pm2 delete "Server" || true
 
-          pm2 start "npm start" --name="Server"
+  #         pm2 start "npm start" --name="Server"
 
  
 
