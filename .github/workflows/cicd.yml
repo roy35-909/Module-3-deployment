@@ -44,7 +44,7 @@ jobs:
 
       - name: Install pm2 
         run: npm install -g pm2
-
+ 
       - name: Deploy to Server
         run: |
           pm2 delete "Server" || true
