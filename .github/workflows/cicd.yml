@@ -24,24 +24,32 @@ jobs:
       - name: Run Tests
         run: npm run check
 
-
-  # Deploy:
-  #   runs-on: self-hosted
-  #   needs: Testing
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v2
-
-  #     - name: Install Dependencies
-  #       run: npm install
+  
 
 
+  Deploy:
+    runs-on: self-hosted
+    needs: Testing
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-  #     - name: Deploy to Server
-  #       run: |
-  #         pm2 delete "Server" || true
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '22'
 
-  #         pm2 start "npm start" --name="Server"
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Install pm2 
+        run: npm install -g pm2
+
+      - name: Deploy to Server
+        run: |
+          pm2 delete "Server" || true
+
+          pm2 start "npm start" --name="Server"
 
  
 
