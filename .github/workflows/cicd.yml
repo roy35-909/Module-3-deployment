@@ -49,7 +49,7 @@ jobs:
         run: |
           pm2 delete "Server" || true
 
-          pm2 start "npm start" --name="Server"
+          pm2 start "npm run dev" --name="Server"
 
  
 
