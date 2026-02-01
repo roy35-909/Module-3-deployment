@@ -36,14 +36,15 @@ jobs:
         run: npm install
 
 
-
+      - name: ahsdfj
+        run: |
+          
       - name: Deploy to Server
         run: |
           pm2 delete "Server" || true
-
           pm2 start "npm start" --name="Server"
 
- 
+
 
 
 
