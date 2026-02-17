@@ -4,7 +4,7 @@ pipeline {
     }
 
     triggers {
-        // Poll SCM every 2 minutes for changes
+
         pollSCM('H/2 * * * *')
     }
 
@@ -26,7 +26,7 @@ pipeline {
             steps {
                 echo 'Building Docker image...'
                 script {
-                    // Build the Docker image
+                    
                     sh "docker build -t ${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} ."
                     sh "docker tag ${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} ${DOCKER_IMAGE_NAME}:latest"
                 }
@@ -37,10 +37,10 @@ pipeline {
             steps {
                 echo 'Pushing Docker image to Docker Hub...'
                 script {
-                    // Login to Docker Hub using credentials
+            
                     sh 'echo $DOCKER_HUB_CREDENTIALS_PSW | docker login -u $DOCKER_HUB_CREDENTIALS_USR --password-stdin'
 
-                    // Push both tagged and latest images
+               
                     sh "docker push ${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}"
                     sh "docker push ${DOCKER_IMAGE_NAME}:latest"
                 }
